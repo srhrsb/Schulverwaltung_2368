@@ -1,0 +1,219 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": false,
+    "cutConstructors": false
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1664073796 { 
+   	label=Controller
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Controller1664073796[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Controller</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   SCANNER: Scanner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   personList: ArrayList&lt;Person&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Controller()</TD></TR>
+<TR><TD ALIGN="LEFT" >- addStudent(name: String, firstname: String, email: String, classRoom: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- addTeacher(name: String, firstname: String, email: String, subjects: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleSearchTerm()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleStudentData()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleTeacherData()</TD></TR>
+<TR><TD ALIGN="LEFT" >- scanInput()</TD></TR>
+<TR><TD ALIGN="LEFT" >- searchPerson(searchTerm: String): Person</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1907849355 { 
+   	label=Person
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Person1907849355[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Person</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   firstname: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Person(name: String, firstname: String, email: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEmail(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getFirstname(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setEmail(email: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setFirstname(firstname: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_214492645 { 
+   	label=Student
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Student214492645[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Student</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   classRoom: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Student(name: String, firstname: String, email: String, classRoom: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getClassRoom(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setClassRoom(classRoom: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_225076162 { 
+   	label=Teacher
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Teacher225076162[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Teacher</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   subjects: String[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ Teacher(name: String, firstname: String, email: String, subjects: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getSubjects(): String[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setSubjects(subjects: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2390489 { 
+   	label=Main
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Main2390489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Controller1664073796 -> Person1907849355[label="personList
+[0..*]"];
+Controller1664073796 -> Student214492645[label="addStudent() -> Student()"];
+Controller1664073796 -> Teacher225076162[label="addTeacher() -> Teacher()"];
+Main2390489 -> Controller1664073796[label="main() -> Controller()"];
+Person1907849355 -> Student214492645[arrowhead=none, arrowtail=empty, dir=both];
+Person1907849355 -> Teacher225076162[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml

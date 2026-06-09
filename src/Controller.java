@@ -72,12 +72,50 @@ public class Controller {
     }
 
     private void handleSearchTerm(){
+        System.out.println("Suchbegriff eingeben: ");
+        String searchTerm = SCANNER.nextLine();
+        Person person = searchPerson(searchTerm);
 
+        if(person == null){
+            System.out.println("Person ungültig bzw. nicht gefunden");
+            return;
+        }
 
+        viewPerson(person);
+        requestDeletePerson(person);
 
     }
 
+    private void requestDeletePerson( Person person ){
+        System.out.println("Person löschen = D: ");
+        String action = SCANNER.nextLine();
 
+        if(action.equals("D")){
+            personList.remove(person);
+        }
+    }
+
+    private void viewPerson( Person person) {
+
+       // System.out.println(person instanceof Student);
+
+        System.out.println( "Name: " + person.getName() );
+        System.out.println( "Vorname: " + person.getFirstname() );
+        System.out.println( "Email: " + person.getEmail() );
+
+        if(person instanceof Student){
+            Student student = (Student) person;
+            System.out.println("Raum: "+ student.getClassRoom());
+        }
+
+        else if(person instanceof Teacher){
+            Teacher teacher = (Teacher) person;
+
+            for( String subject : teacher.getSubjects()){
+                System.out.println("Fach: "+ subject );
+            }
+        }
+    }
 
     private void addStudent(String name, String firstname, String email, String classRoom){
        Person student = new Student(name, firstname, email, classRoom);
@@ -91,7 +129,28 @@ public class Controller {
 
     private Person searchPerson( String searchTerm ){
 
-        //ToDo: Person suchen
+        for(Person person : personList){
+
+            if(person.getName().contains(searchTerm)){
+                return person;
+            }
+            else if(person.getFirstname().contains(searchTerm)){
+                return person;
+            }
+            else if(person.getEmail().contains(searchTerm)){
+                return person;
+            }
+        }
+
         return null;
     }
+
+
+    //Hausaufgabe:
+
+    // Hinweis: das entfernen aus ArrayListen
+    //erledigt die Methode remove( )
+
+    //implementieren Sie nach einer gefundenen Person die Möglichkeit
+    //diese zu löschen
 }

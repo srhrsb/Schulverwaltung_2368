@@ -14,4 +14,10 @@ public class Student extends Person {
     public void setClassRoom(String classRoom) {
         this.classRoom = classRoom;
     }
+
+    @Override
+    public String getName() {
+        System.out.println("Name des Schülers wurde abgefragt");
+        return super.getName();
+    }
 }
