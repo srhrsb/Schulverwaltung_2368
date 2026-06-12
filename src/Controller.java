@@ -90,7 +90,7 @@ public class Controller {
         System.out.println("Person löschen = D: ");
         String action = SCANNER.nextLine();
 
-        if(action.equals("D")){
+        if(action.equalsIgnoreCase("D")){
             personList.remove(person);
         }
     }

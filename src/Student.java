@@ -15,7 +15,7 @@ public class Student extends Person {
         this.classRoom = classRoom;
     }
 
-    @Override
+    @Override //Annotation: Anmerkung die nur Informationen liefert, aber die Funktionalität nicht beeinflusst
     public String getName() {
         System.out.println("Name des Schülers wurde abgefragt");
         return super.getName();
